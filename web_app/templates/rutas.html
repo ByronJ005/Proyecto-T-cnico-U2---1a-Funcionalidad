@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Rutas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📍 Gestión de Rutas</h1>
+            <a href="/" class="back-link">← Volver al inicio</a>
+        </header>
+
+        <main class="main-content">
+            <!-- Formulario de Rutas -->
+            <section class="form-section">
+                <h2>{{ 'Editar Ruta' if editing_ruta else 'Crear Nueva Ruta' }}</h2>
+                
+                <form id="formRuta" class="form-container">
+                    <input type="hidden" id="rutaId">
+                    
+                    <div class="form-group">
+                        <label for="origen">Ciudad de Origen:</label>
+                        <select id="origen" required>
+                            <option value="">-- Seleccionar ciudad --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destino">Ciudad de Destino:</label>
+                        <select id="destino" required>
+                            <option value="">-- Seleccionar ciudad --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio (USD):</label>
+                        <input type="number" id="precio" step="0.01" min="0" placeholder="Ej: 12.50" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duracion">Duración (horas):</label>
+                        <input type="number" id="duracion" step="0.5" min="0" placeholder="Ej: 6.5" required>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary" id="btnGuardar">Guardar Ruta</button>
+                        <button type="reset" class="btn btn-secondary" id="btnCancelar">Cancelar</button>
+                    </div>
+                </form>
+
+                <div id="mensajeAlerta" class="alert"></div>
+            </section>
+
+            <!-- Tabla de Rutas -->
+            <section class="table-section">
+                <h2>Rutas Registradas</h2>
+                
+                <div class="table-controls">
+                    <input type="text" id="buscarRuta" placeholder="🔍 Buscar ruta..." class="search-input">
+                    <span id="totalRutas" class="counter">Total: 0</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tablasRutas" class="table">
+                        <thead>
+                            <tr>
+                                <th>Origen</th>
+                                <th>Destino</th>
+                                <th>Precio (USD)</th>
+                                <th>Duración (hrs)</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            <!-- Se llenará con JavaScript -->
+                        </tbody>
+                    </table>
+                    <p id="sinDatos" class="sin-datos">No hay rutas registradas. Crea una nueva ruta.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='rutas.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Cooperativas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 Gestión de Cooperativas</h1>
+            <a href="/" class="back-link">← Volver al inicio</a>
+        </header>
+
+        <main class="main-content">
+            <!-- Formulario de Cooperativas -->
+            <section class="form-section">
+                <h2>{{ 'Editar Cooperativa' if editing_coop else 'Crear Nueva Cooperativa' }}</h2>
+                
+                <form id="formCooperativa" class="form-container">
+                    <input type="hidden" id="coopId">
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Ej: Coop Trans Loja" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">URL Sitio Web (En caso de existir):</label>
+                        <input type="url" id="url" placeholder="Ej: https://cooperativa.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono de Contacto:</label>
+                        <input type="tel" id="telefono" placeholder="Ej: 0993385138" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activa" class="checkbox-label">
+                            <input type="checkbox" id="activa" checked>
+                            <span>Cooperativa Activa</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rutas">Seleccionar Rutas:</label>
+                        <div class="rutas-selector">
+                            <div id="rutasDisponibles" class="rutas-list">
+                                <!-- Se llenará con JavaScript -->
+                            </div>
+                            <div id="rutasSeleccionadas" class="rutas-seleccionadas">
+                                <h4>Rutas Seleccionadas:</h4>
+                                <ul id="listaRutasSeleccionadas"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary" id="btnGuardarCoop">Guardar Cooperativa</button>
+                        <button type="reset" class="btn btn-secondary" id="btnCancelarCoop">Cancelar</button>
+                    </div>
+                </form>
+
+                <div id="mensajeAlerta" class="alert"></div>
+            </section>
+
+            <!-- Tabla de Cooperativas -->
+            <section class="table-section">
+                <h2>Cooperativas Registradas</h2>
+                
+                <div class="table-controls">
+                    <input type="text" id="buscarCoop" placeholder="🔍 Buscar cooperativa..." class="search-input">
+                    <span id="totalCoops" class="counter">Total: 0</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tablasCooperativas" class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>URL</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                                <th>Rutas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyCoops">
+                            <!-- Se llenará con JavaScript -->
+                        </tbody>
+                    </table>
+                    <p id="sinDatos" class="sin-datos">No hay cooperativas registradas. Crea una nueva cooperativa.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para ver detalles -->
+    <div id="modalDetalles" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rutas de la Cooperativa</h2>
+            <ul id="listaRutasModal"></ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='cooperativas.js') }}"></script>
+</body>
+</html>

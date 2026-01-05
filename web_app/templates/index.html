@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Pasajes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Pasajes en Línea</h1>
+            <p>Administración de rutas y cooperativas</p>
+        </header>
+
+        <nav class="nav-menu">
+            <a href="/rutas" class="nav-link">Gestión de Rutas</a>
+            <a href="/cooperativas" class="nav-link">Gestión de Cooperativas</a>
+        </nav>
+
+        <main class="main-content">
+            <section class="welcome">
+                <h2>Bienvenido Usuario</h2>
+                <p>Selecciona una opción del menú para comenzar a gestionar rutas y cooperativas de transporte.</p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>📍 Gestión de Rutas</h3>
+                        <p>Crea, edita y elimina rutas entre ciudades.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🏢 Gestión de Cooperativas</h3>
+                        <p>Administra las cooperativas, asigna rutas y controla su estado de actividad.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
